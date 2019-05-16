@@ -1372,17 +1372,20 @@ function! asyncrun#quickfix_toggle(size, ...)
 	noautocmd windo call s:WindowCheck(0)
 	noautocmd silent! exec ''.l:winnr.'wincmd w'
 	if l:mode == 0
-		if s:quickfix_open != 0
-			silent! cclose
-		endif
+	  exec 'vertical botright '. ((a:size > 0)? a:size : ' ').' copen'
+"		if s:quickfix_open != 0
+"			silent! cclose
+"		endif
 	elseif l:mode == 1
 		if s:quickfix_open == 0
-			exec 'botright copen '. ((a:size > 0)? a:size : ' ')
+			 " exec 'botright copen '. ((a:size > 0)? a:size : ' ')
+	     exec 'vertical botright '. ((a:size > 0)? a:size : ' ').' copen'
 			wincmd k
 		endif
 	elseif l:mode == 2
 		if s:quickfix_open == 0
-			exec 'botright copen '. ((a:size > 0)? a:size : ' ')
+			 " exec 'botright copen '. ((a:size > 0)? a:size : ' ')
+	     exec 'vertical botright '. ((a:size > 0)? a:size : ' ').' copen'
 			wincmd k
 		else
 			silent! cclose
